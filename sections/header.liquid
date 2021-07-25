@@ -1,0 +1,56 @@
+{% if shop.customer_accounts_enabled %}
+{% if customer %}
+    <a href="/account">account</a>
+    {{ 'log out'  | customer_logout_link }}
+{% else %}
+    {{ 'log in ' | customer_login_link }}
+    {{ 'register' | customer_register_link }}
+{% endif %}
+{% endif %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand" href="#">Hidden brand</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {% for link in linklists.main-menu.links %}
+                {% assign child_list_handle = link.title | handleize %}
+                {% if linklists[child_list_handle].links != blank %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ link.url}}">{{ link.title }}</a>
+                    </li>
+                    [{% for childlink in linklists[child_list_handle].links %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                        </li>
+                    {% endfor %}]
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            <li class="nav-item">         
+                <a class="nav-link" href="/cart">Cart</a>
+            </li>
+        </ul>
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+</nav>
+
+{% if shop.customer_accounts_enabled %}
+    {% if customer %}
+        <a href="/account">account</a>
+        {{ 'log out'  | customer_logout_link }}
+    {% else %}
+        {{ 'log in ' | customer_login_link }}
+        {{ 'register' | customer_register_link }}
+    {% endif %}
+{% endif %}
