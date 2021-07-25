@@ -1,6 +1,27 @@
 {
-  "current": "Default",
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+        }
+      },
+      "16272571307e827e97": {
+        "type": "hero",
+        "settings": {
+          "title": "Example Heading",
+          "description": "<p>Example Paragraph<\/p>",
+          "button_label": "Button",
+          "button_link": ""
+        }
+      }
+    },
+    "content_for_index": [
+      "16272571307e827e97"
+    ]
+  },
   "presets": {
-    "Default": { }
+    "Default": {
+    }
   }
 }
